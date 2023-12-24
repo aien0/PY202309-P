@@ -3,8 +3,7 @@ def validate_yes_no_input(message):
     while True:
         user_input = input(f"{message}").lower()
         if user_input in ['yes', 'no']:
-            return user_input.capitalize()  # 대문자로 변환하여 반환
-        else:
+            return user_input.capitalize()  # Capitalize and return
             print("올바른 형식으로 입력하세요. 'yes' 또는 'no'로 입력하세요.")
 
 # Validate and return an integer
@@ -21,6 +20,6 @@ def validate_gender_input(message):
     while True:
         user_input = input(f"{message}").lower()
         if user_input in ['male', 'female']:
-            return user_input.capitalize()  # 대문자로 변환하여 반환
+            return user_input.capitalize()  # Capitalize and return
         else:
             print("올바른 형식으로 입력하세요. 'male' 또는 'female'로 입력하세요.")

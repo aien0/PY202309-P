@@ -6,7 +6,7 @@ from user_input_validator import (
 )
 
 if __name__ == "__main__":
-    # 사용자에게 8가지 항목을 입력 받음
+    # Eight items are entered by the user
     Fever = validate_yes_no_input("발열이 있나요? (Yes/No): ")
     Cough = validate_yes_no_input("기침이 있나요? (Yes/No): ")
     Fatigue = validate_yes_no_input("피로감이 있나요? (Yes/No): ")
@@ -19,15 +19,15 @@ if __name__ == "__main__":
     Blood_Pressure_int = validate_integer_input("수축기 혈압을 입력하세요: ")
     Cholesterol_Level_int = validate_integer_input("총 콜레스테롤 수치를 입력하세요: ")
 
-    def convert_blood_pressure(value): # 수축기 혈압
+    def convert_blood_pressure(value): # systolic blood pressure
         if value <= 90:
-            return "Low" # 저혈압
+            return "Low" # low blood pressure
         elif 90 < value <= 120:
             return "Normal"
         else:
-            return "High" # 고혈압
+            return "High" # High blood pressure
 
-    def convert_cholesterol_level(value): # 총 콜레스테롤 수치
+    def convert_cholesterol_level(value): # total cholesterol level
         if value < 140:
             return "Low"
         elif 140 <= value <= 200:
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         else:
             return "High"
         
-    # 혈압과 콜레스테롤 수치 변환 (범위로)
+    # Conversion of blood pressure and cholesterol levels (range)
     Blood_Pressure = convert_blood_pressure(Blood_Pressure_int)
     Cholesterol_Level = convert_cholesterol_level(Cholesterol_Level_int)
         
@@ -55,6 +55,14 @@ if __name__ == "__main__":
     diagnosis.load_data()
     top_diseases = diagnosis.find_top_diseases()
 
+    # Top-3 Diseases
     print("Top-3 Diseases:")
-    for disease, similarity in top_diseases:
-        print(f"{disease}: Similarity - {similarity}")
+    for disease, similarity, probability in top_diseases:
+        print(f"{disease}: Similarity - {similarity}, Probability - {probability}%")
+    
+    recommended_hospitals = diagnosis.recommend_hospital(top_diseases)
+
+    # Recommended Hospitals
+    print("\nRecommended Hospitals:")
+    for disease, hospital, probability in recommended_hospitals:
+        print(f"For {disease}, Recommended Hospital: {hospital}")
